@@ -1,4 +1,4 @@
-# 7-18RMD-codes-separated----
+---
 title: ""
 output: html_document
 ---
@@ -73,23 +73,16 @@ filtered_df <- myfulldata_1[!duplicated(myfulldata_1$`1997`),]
 filtered_df2 <- filtered_df[!duplicated(filtered_df$`2007`) ,]
 
 ```
-Long way of changing all the -s dashes in the dataset to 0s (only years 2007-2016 for the "Asylees" row had dashes)
+
+Using lapply function to change all -'s dashes in the dataset to 0s (only years 2007-2016 for the "Asylees" row had dashes)
 
 ```{r}
-filtered_df2$`2007`[filtered_df2$`2007`=="-"] <- "0"
-filtered_df2$`2008`[filtered_df2$`2008`=="-"] <- "0"
-filtered_df2$`2009`[filtered_df2$`2009`=="-"] <- "0"
-filtered_df2$`2010`[filtered_df2$`2010`=="-"] <- "0"
-filtered_df2$`2011`[filtered_df2$`2011`=="-"] <- "0"
-filtered_df2$`2012`[filtered_df2$`2012`=="-"] <- "0"
-filtered_df2$`2013`[filtered_df2$`2013`=="-"] <- "0"
-filtered_df2$`2014`[filtered_df2$`2014`=="-"] <- "0"
-filtered_df2$`2015`[filtered_df2$`2015`=="-"] <- "0"
-filtered_df2$`2016`[filtered_df2$`2016`=="-"] <- "0"
+
+filtered_df2[2:21] <- lapply(filtered_df2[2:21], function(col) as.character( gsub("-$|\\,", "0", col) ) )
 
 ```
 
-Changing the class for all the years from "character" to "numeric" , 2:21 representing column 2 through 21.
+Using lapply function to change the class for all the years from "character" to "numeric" , 2:21 representing column 2 through 21.
 
 ```{r}
 ix <- 2:21
